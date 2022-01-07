@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="mainTone" format="boolean" />
+    <attr name="auxiliaryTone" format="boolean" />
+    <attr name="tintTone" format="boolean" />
+    <attr name="mainTextColor" format="boolean" />
+    <attr name="auxiliaryTextColor" format="boolean" />
+    <attr name="essayTune" format="boolean" />
+    <!-- <declare-styleable name="ThemeCompatLinearLayout">
+         <attr name="mainTone" format="boolean"/>
+         <attr name="auxiliaryTone" format="boolean"/>
+         <attr name="Tint" format="boolean"/>
+         <attr name="mainTextColor" format="boolean"/>
+         <attr name="auxiliaryTextColor" format="boolean"/>
+         <attr name="essayTune" format="boolean"/>
+     </declare-styleable>
+     <declare-styleable name="ThemeCompatEditText">
+         <attr name="mainTextColor" format="boolean"/>
+         <attr name="auxiliaryTextColor" format="boolean"/>
+     </declare-styleable>
+     <declare-styleable name="ThemeCompatTextView">
+         <attr name="mainTextColor" format="boolean"/>
+         <attr name="auxiliaryTextColor" format="boolean"/>
+     </declare-styleable>
+     <declare-styleable name="ThemeCompatButton">
+         <attr name="mainTextColor" format="boolean"/>
+         <attr name="auxiliaryTextColor" format="boolean"/>
+     </declare-styleable>
+     <declare-styleable name="ThemeCompatImageView">
+         <attr name="Tint" format="boolean"/>
+     </declare-styleable>
+     <declare-styleable name="ThemeCompatSwitchButton">
+         <attr name="mainTone" format="boolean"/>
+         <attr name="auxiliaryTone" format="boolean"/>
+         <attr name="essayTune" format="boolean"/>
+     </declare-styleable>-->
+</resources>

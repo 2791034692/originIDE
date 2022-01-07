@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">原子灵动</string>
+    <string-array name="editor_mod">
+        <item>省电模式</item>
+        <item>性能模式</item>
+        <item>火力全开</item>
+    </string-array>
+</resources>

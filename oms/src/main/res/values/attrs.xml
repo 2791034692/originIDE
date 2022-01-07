@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="UIList">
+    </declare-styleable>
+    <declare-styleable name="UIText">
+        <attr name="textTypeface" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="View">
+        <attr name="factory" format="boolean"/>
+    </declare-styleable>
+</resources>

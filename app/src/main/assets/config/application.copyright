@@ -1,0 +1,14 @@
+{
+  "list":[
+  {
+    "name":"switch-button",
+    "author":"",
+    "versionName":"",
+    "url":""
+    "import":{
+       "tools":"android studio & gradle"
+       "typeCode":"implementation 'com.github.zcweng:switch-button:0.0.3@aar'"
+     }
+  }
+  ]
+}

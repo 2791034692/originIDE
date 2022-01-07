@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_gravity="left"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:orientation="vertical"
+        android:background="@drawable/ic_drawable_editor_drawlayout_edge"
+        android:layout_marginLeft="-10dp"
+        android:paddingLeft="10dp"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:padding="10dp"
+            android:id="@+id/editor_left_linearLayout_xm_tools"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="项目操作"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:src="@drawable/ic_drawable_go_24dp"
+                android:tint="@color/black"
+                android:layout_height="15dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="#666c6c6c" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="项目文件"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="#666c6c6c" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/recyclerView"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</LinearLayout>

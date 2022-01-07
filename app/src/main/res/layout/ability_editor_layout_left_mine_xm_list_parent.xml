@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:id="@+id/editor_linearLayout_left_mine_xm_list_parent"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="40dp">
+
+    <ImageView
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:id="@+id/editor_imageView_left_mine_xm_list_parent_expand"
+        android:src="@drawable/ic_drawable_go_24dp"
+        android:tint="@color/black" />
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/ic_drawable_folder_24dp"
+        android:layout_height="24dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:id="@+id/editor_textView_left_mine_xm_list_parent_title"
+        android:layout_marginLeft="10dp"
+        android:textSize="14sp"
+        android:singleLine="true"
+        android:ellipsize="middle"
+        android:text="目录名" />
+</LinearLayout>
