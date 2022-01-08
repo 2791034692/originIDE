@@ -39,7 +39,8 @@ public abstract class Thread extends ModAbility implements Runnable {
      }
      @Override
      public abstract void run();
-     @Override
+
+    @Override
      protected void finalize() throws Throwable {
         super.finalize();
         this.stop();

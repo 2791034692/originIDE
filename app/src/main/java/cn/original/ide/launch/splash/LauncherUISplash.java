@@ -4,7 +4,7 @@ import android.widget.LinearLayout;
 
 import androidx.core.splashscreen.SplashScreen;
 
-import cn.original.ide.launch.main.main.LauncherUI;
+import cn.original.ide.launch.main.LauncherUI;
 import oms.ability.视窗能力;
 import oms.content.意图;
 

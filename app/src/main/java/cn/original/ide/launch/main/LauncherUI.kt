@@ -1,4 +1,4 @@
-package cn.original.ide.launch.main.main
+package cn.original.ide.launch.main
 
 import android.widget.Toast
 import androidx.annotation.Nullable
@@ -10,6 +10,7 @@ import com.hjq.permissions.XXPermissions
 import oms.ability.视窗能力
 import oms.content.Intent
 import oms.content.意图
+import oms.thread.Thread as Thread
 
 
 class LauncherUI : 视窗能力() {
@@ -42,6 +43,14 @@ class LauncherUI : 视窗能力() {
                         }
                     }
                 })
+        }
+    }
+
+    fun init() {
+        var thread: Thread = object : Thread() {
+            override fun run() {
+
+            }
         }
     }
 

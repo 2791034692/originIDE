@@ -17,6 +17,7 @@ import java.util.List;
 
 import cn.original.ide.R;
 import cn.original.ide.launch.code.file.edit.left.Adapter;
+import cn.original.ide.module.System;
 import cn.original.ide.settings.Settings;
 import cn.original.ide.tree.list.listener.OnScrollToListener;
 import cn.original.ide.tree.list.node.TreeNode;
@@ -164,5 +165,15 @@ public class LauncherUIEditor extends 视窗能力 implements View.OnClickListen
         return super.onKeyDown(keyCode, event);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.with(this).logout();
+    }
 
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        System.with(this).logout();
+    }
 }

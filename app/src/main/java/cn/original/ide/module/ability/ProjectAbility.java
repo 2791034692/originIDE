@@ -38,26 +38,11 @@ public class ProjectAbility extends Ability implements ProjectAbilityParent {
 
     public interface AddItem {
         Drawable getIcon();
-
         String getName();
     }
 
-    public final void onCreateAddDialogInterface() {
+    public final void onCreateProjectInterface() {
 
     }
-
-    protected void onCreateAddDialog() {
-
-    }
-
-    public final void addDialogData() {
-
-    }
-
-    public class VIEW {
-        public int TYPE;
-        public String title = null;
-    }
-
 
 }

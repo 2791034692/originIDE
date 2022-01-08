@@ -53,25 +53,39 @@ public class File extends ModAbility {
 
 
      public boolean move(String o){
-          if(_path.startsWith("@")||_path.startsWith("@")){
+          if (_path.startsWith("@") || _path.startsWith("@")) {
                return false;
-          }else{
-               java.io.File file = new java.io.File(getPath(o,getContext()));
-               if(copy(o)){
+          } else {
+               java.io.File file = new java.io.File(getPath(o, getContext()));
+               if (copy(o)) {
                     file.delete();
                }
                return false;
           }
      }
 
-     public boolean copy(String f){
-          if(f.startsWith("@")){
+     public String[] list() {
+          String str = this._path;
+          if (str.startsWith("@")) {
+               try {
+                    return getContext().getAssets().list(str.substring(1));
+               } catch (IOException e) {
+                    e.printStackTrace();
+                    return null;
+               }
+          }
+          java.io.File stringBuffer = new java.io.File(_realPath);
+          return stringBuffer.exists() ? stringBuffer.list() : null;
+     }
+
+     public boolean copy(String f) {
+          if (f.startsWith("@")) {
                return false;
-          }else{
-               java.io.File file = new java.io.File(getPath(f,getContext()));
-               if(file.getParentFile()!=null){
+          } else {
+               java.io.File file = new java.io.File(getPath(f, getContext()));
+               if (file.getParentFile() != null) {
                     file.getParentFile().mkdirs();
-               }else{
+               } else {
                     file.mkdirs();
                }
                try {
