@@ -1,7 +1,6 @@
 package cn.original.ide.built.javac;
 
 import android.graphics.drawable.Drawable;
-
 import cn.original.ide.R;
 import cn.original.ide.module.ability.ProjectAbility;
 import cn.original.ide.module.content.Application;

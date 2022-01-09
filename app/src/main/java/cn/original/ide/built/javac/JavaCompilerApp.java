@@ -7,5 +7,6 @@ public class JavaCompilerApp extends Application {
     @Override
     protected void onStart() {
         initAbility(new JavaProjectAbility(this));
+        initAbility(new JavaCompilerAbility(this));
     }
 }
