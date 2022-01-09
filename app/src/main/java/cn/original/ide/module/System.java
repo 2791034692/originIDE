@@ -1,6 +1,7 @@
 package cn.original.ide.module;
 
 import android.content.Context;
+import android.content.Intent;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import cn.original.ide.module.ability.ProjectAbility;
 import cn.original.ide.module.content.AppManage;
 import cn.original.ide.module.content.Application;
+import oms.ability.UIAbility;
 import oms.io.File;
 import oms.io.JSON;
 
@@ -33,7 +35,7 @@ public class System extends AppManage {
     }
 
     //插件导入，仅先加载需要使用的，生成的类会在AppManage中存储，避免进行再一次反射
-    public void init(int point) {
+    public void init(int point, Class<UIAbility> uiAbilityClass) {
         File file = new File("$app/module/");
         for (String string : file.list()) {
             File jsonFile = new File("$app/module/" + string + "/app.json");
@@ -45,6 +47,11 @@ public class System extends AppManage {
         }
         gc();
         //通知回收无用变量
+    }
+
+    private void goUIAbility(Class<UIAbility> uiAbilityClass) {
+        Intent intent = new Intent(context, uiAbilityClass);
+        context.startActivity(intent);
     }
 
     public static System with(Context context) {
