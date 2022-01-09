@@ -2,6 +2,7 @@ package cn.original.ide.launch.main
 
 import android.widget.Toast
 import androidx.annotation.Nullable
+import cn.original.ide.index.PathIndex
 import cn.original.ide.launch.code.LauncherUIEditor
 import cn.original.ide.tree.view.ActivityMainTree
 import com.hjq.permissions.OnPermissionCallback
@@ -10,7 +11,8 @@ import com.hjq.permissions.XXPermissions
 import oms.ability.视窗能力
 import oms.content.Intent
 import oms.content.意图
-import oms.thread.Thread as Thread
+import oms.io.File
+import oms.thread.Thread
 
 
 class LauncherUI : 视窗能力() {
@@ -36,6 +38,7 @@ class LauncherUI : 视窗能力() {
                     override fun onDenied(permissions: List<String>, never: Boolean) {
                         if (never) {
                             toast("被永久拒绝授权，请手动存储权限！")
+                            onCreatePath()
                             // 如果是被永久拒绝就跳转到应用权限系统设置页面
                             XXPermissions.startPermissionActivity(activity, permissions)
                         } else {
@@ -54,10 +57,22 @@ class LauncherUI : 视窗能力() {
         }
     }
 
+    fun onCreatePath() {
+        File(PathIndex.APPLICATION_FOLDER_PATH).mkdirs()
+        File(PathIndex.BACKUPS_FOLDER_PATH).mkdirs()
+        File(PathIndex.MODULE_FOLDER_PATH).mkdirs()
+        File(PathIndex.PROJECT_FOLDER_PATH).mkdirs()
+        var hisOpen: File = File(PathIndex.HISTORY_OPEN_FILE_PATH)
+        if (!hisOpen.exists() && !hisOpen.isFile) {
+            hisOpen.write("")
+        }
+    }
+
     fun onActivityResult(requestCode: Int, resultCode: Int, @Nullable data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == XXPermissions.REQUEST_CODE) {
             if (XXPermissions.isGranted(this, Permission.Group.STORAGE)) {
+                onCreatePath()
                 goAbility(Intent(this, LauncherUIEditor::class.java))
             } else {
                 toast("用户没有在权限设置页授予权限")
@@ -65,9 +80,6 @@ class LauncherUI : 视窗能力() {
         }
     }
 
-    fun onCreatePath() {
-
-    }
 
     private fun toast(s: String) {
         Toast.makeText(this.applicationContext, s, Toast.LENGTH_SHORT).show()

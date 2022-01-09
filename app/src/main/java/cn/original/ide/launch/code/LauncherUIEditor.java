@@ -24,6 +24,7 @@ import cn.original.ide.tree.list.node.TreeNode;
 import cn.original.ide.tree.view.AbilityEditorLayoutTree;
 import oms.ability.视窗能力;
 import oms.content.意图;
+import oms.io.File;
 
 
 public class LauncherUIEditor extends 视窗能力 implements View.OnClickListener {
@@ -93,6 +94,8 @@ public class LauncherUIEditor extends 视窗能力 implements View.OnClickListen
         super.当视窗重载时();
     }
 
+    private Adapter adapter;
+
     @Override
     protected void 当视窗载入时(意图 intent) {
         super.当视窗载入时(intent);
@@ -105,8 +108,7 @@ public class LauncherUIEditor extends 视窗能力 implements View.OnClickListen
         viewTree.editor_imageView_redo.setOnClickListener(this::onClick);
         viewTree.editor_imageView_undo.setOnClickListener(this::onClick);
         linearLayoutManager = new LinearLayoutManager(this);
-        Adapter adapter = new Adapter(this);
-        List<TreeNode> list = adapter.getChildrenByPath("/sdcard/", 0);
+        adapter = new Adapter(this);
         viewTree.recyclerView.setAdapter(adapter);
         viewTree.recyclerView.setLayoutManager(linearLayoutManager);
         adapter.setOnScrollToListener((new OnScrollToListener() {
@@ -115,7 +117,6 @@ public class LauncherUIEditor extends 视窗能力 implements View.OnClickListen
                 viewTree.recyclerView.scrollToPosition(position);
             }
         }));
-        adapter.addAll(list, 0);
         viewTree.editor_codeEditor_view.setKeywordColor(Color.parseColor("#0033B3"));
         initSymbol();
         viewTree.editor_left_linearLayout_xm_tools.setOnClickListener(this::onClick);
@@ -123,6 +124,12 @@ public class LauncherUIEditor extends 视窗能力 implements View.OnClickListen
 
     private AlertDialog.Builder toolsDialogBuilder = null;
     private AlertDialog toolsDialog;
+
+    private void selectProject(String name) {
+        List<TreeNode> list = adapter.getChildrenByPath(new File("%原子灵动/程序/").getPath(), 0);
+        adapter.addAll(list, 0);
+    }
+
 
     @Override
     public void onClick(View v) {
