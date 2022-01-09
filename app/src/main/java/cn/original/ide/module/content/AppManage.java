@@ -9,6 +9,8 @@ import android.os.Message;
 import androidx.annotation.NonNull;
 
 import cn.original.ide.module.ability.Ability;
+import cn.original.ide.module.ability.CompilerAbility;
+import cn.original.ide.module.ability.ProjectAbility;
 import dalvik.system.DexClassLoader;
 
 public abstract class AppManage {
@@ -27,6 +29,14 @@ public abstract class AppManage {
         if (context instanceof Activity) {
             this.context = context;
         }
+    }
+
+    public CompilerAbility getCompilerAbility(String string) {
+        return null;
+    }
+
+    public ProjectAbility getProjectAbility(String string) {
+        return null;
     }
 
     public Context getCurrentContext() {

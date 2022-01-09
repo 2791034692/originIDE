@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">originIDE</string>
+    <string-array name="editor_mod">
+        <item>省电模式</item>
+        <item>性能模式</item>
+        <item>火力全开</item>
+    </string-array>
+    <string name="editor_copy">copy</string>
+    <string name="editor_paste">paste</string>
+    <string name="editor_shear">shear</string>
+    <string name="editor_project_add">add project</string>
+    <string name="editor_select_project">select project</string>
+    <string name="editor_project_file">project file</string>
+    <string name="editor_project_tools">project tools</string>
+    <string name="editor_project_select_default">project not open</string>
+</resources>
