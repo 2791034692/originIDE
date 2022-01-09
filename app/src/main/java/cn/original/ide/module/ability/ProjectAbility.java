@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 
 import cn.original.ide.module.content.Application;
 import cn.original.ide.module.interfaces.ProjectAbilityParent;
+import oms.io.File;
 
 public class ProjectAbility extends Ability implements ProjectAbilityParent {
     public static final int VIEW_EDIT_GROUP = 0;
@@ -38,11 +39,22 @@ public class ProjectAbility extends Ability implements ProjectAbilityParent {
 
     public interface AddItem {
         Drawable getIcon();
+
         String getName();
     }
 
     public final void onCreateProjectInterface() {
+        if (projectAbilityParent != null && projectAbilityParent instanceof ProjectAbility) {
+            ((ProjectAbility) projectAbilityParent).onCreateProjectInterface();
+        }
+        onCreateProject();
+    }
 
+    protected void onCreateProject() {
+    }
+
+    public String getProjectsPath() {
+        return new File("%原子灵动/程序/").getPath();
     }
 
 }

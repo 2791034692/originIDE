@@ -17,7 +17,7 @@ public class System extends AppManage {
     private ArrayList<ProjectAbility> projectAbilities = new ArrayList<>();
     private static System mSystem;
     private Context context;
-    public static final int a = 0;
+    public static final int MODULE_MAIN = 0;
 
     System(Context context) {
         super();
@@ -34,6 +34,10 @@ public class System extends AppManage {
 
     }
 
+    public void init(Application application) {
+        //内置的插件
+    }
+
     //插件导入，仅先加载需要使用的，生成的类会在AppManage中存储，避免进行再一次反射
     public void init(int point, Class<UIAbility> uiAbilityClass) {
         File file = new File("$app/module/");
@@ -41,6 +45,7 @@ public class System extends AppManage {
             File jsonFile = new File("$app/module/" + string + "/app.json");
             if (jsonFile.exists()) {
                 JSON json = new JSON(file.read());
+                int t = json.getInt("");
             }
             //如果不存在app.json文件就跳过
             continue;
@@ -58,6 +63,7 @@ public class System extends AppManage {
         if (mSystem == null) {
             mSystem = new System(context);
         }
+        mSystem.setContext(context);
         return mSystem;
     }
 

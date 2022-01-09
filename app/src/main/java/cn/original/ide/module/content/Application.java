@@ -2,6 +2,8 @@ package cn.original.ide.module.content;
 
 import android.os.Handler;
 
+import cn.original.ide.module.ability.Ability;
+
 public abstract class Application {
     private AppManage system;
     private boolean state = false;
@@ -10,6 +12,10 @@ public abstract class Application {
 
     public AppManage getApplicationManage() {
         return system;
+    }
+
+    public void initAbility(Ability ability) {
+
     }
 
     final void setManage(AppManage system) {
@@ -25,6 +31,7 @@ public abstract class Application {
     public Handler getHandler() {
         return system.handler;
     }
+
 
     public void setState(boolean state) {
         this.state = state;

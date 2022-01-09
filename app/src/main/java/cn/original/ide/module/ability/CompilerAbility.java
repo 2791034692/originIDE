@@ -6,4 +6,9 @@ public class CompilerAbility extends Ability {
     public CompilerAbility(Application application) {
         super(application);
     }
+
+    //传递path
+    public void onStart(String string) {
+
+    }
 }
