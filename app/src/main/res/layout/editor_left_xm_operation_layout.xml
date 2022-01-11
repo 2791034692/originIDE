@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:padding="10dp"
-        android:id="@+id/editor_left_linearLayout_xm_tools_add"
+        android:id="@+id/editor_left_linearLayout_xm_operation_add"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:padding="10dp"
-        android:id="@+id/editor_left_linearLayout_xm_tools_choice"
+        android:id="@+id/editor_left_linearLayout_xm_operation_choice"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 

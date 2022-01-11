@@ -22,7 +22,7 @@ public class AbilityEditorLayoutTree extends ViewTree {
     public RecyclerView recyclerView;
     public LinearLayout editor_linearLayout_symbolBar_group;
     public ImageView editor_imageView_layoutHelp;
-    public LinearLayout editor_left_linearLayout_xm_tools;
+    public LinearLayout editor_left_linearLayout_xm_operation;
 
     public AbilityEditorLayoutTree(UIAbility ability) {
         super(ability);
@@ -43,6 +43,6 @@ public class AbilityEditorLayoutTree extends ViewTree {
         recyclerView = findViewById(id.recyclerView);
         editor_linearLayout_symbolBar_group = findViewById(id.editor_linearLayout_symbolBar_group);
         editor_imageView_layoutHelp = findViewById(id.editor_imageView_layoutHelp);
-        editor_left_linearLayout_xm_tools = findViewById(id.editor_left_linearLayout_xm_tools);
+        editor_left_linearLayout_xm_operation = findViewById(id.editor_left_linearLayout_xm_operation);
     }
 }

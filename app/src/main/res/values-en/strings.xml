@@ -11,6 +11,7 @@
     <string name="editor_project_add">add project</string>
     <string name="editor_select_project">select project</string>
     <string name="editor_project_file">project file</string>
-    <string name="editor_project_tools">project tools</string>
+    <string name="editor_project_operation">project operation</string>
     <string name="editor_project_select_default">project not open</string>
+    <string name="editor_project_tools">project tools</string>
 </resources>

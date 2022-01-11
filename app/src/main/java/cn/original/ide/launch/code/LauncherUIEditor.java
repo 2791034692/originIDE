@@ -29,10 +29,7 @@ import oms.io.File;
 
 public class LauncherUIEditor extends 视窗能力 implements View.OnClickListener {
     private AbilityEditorLayoutTree viewTree;
-    //为了使layoutHelper可以使用所有的View能力，因此提前在editor界面进行classloader的注册
-    //private ArrayMap<String,ClassLoaderRegistry> stringClassLoaderRegistryArrayMap = new ArrayMap<>();
     private LinearLayoutManager linearLayoutManager;
-
 
     void initSymbol() {
         int width = dip2px(40);
@@ -119,7 +116,7 @@ public class LauncherUIEditor extends 视窗能力 implements View.OnClickListen
         }));
         viewTree.editor_codeEditor_view.setKeywordColor(Color.parseColor("#0033B3"));
         initSymbol();
-        viewTree.editor_left_linearLayout_xm_tools.setOnClickListener(this::onClick);
+        viewTree.editor_left_linearLayout_xm_operation.setOnClickListener(this::onClick);
     }
 
     private AlertDialog.Builder toolsDialogBuilder = null;
@@ -142,19 +139,19 @@ public class LauncherUIEditor extends 视窗能力 implements View.OnClickListen
                 break;
             case R.id.editor_imageView_undo:
                 viewTree.editor_codeEditor_view.undo();
-            case R.id.editor_left_linearLayout_xm_tools:
+            case R.id.editor_left_linearLayout_xm_operation:
                 if (toolsDialogBuilder == null) {
                     toolsDialogBuilder = new AlertDialog.Builder(this);
                 }
-                toolsDialogBuilder.setView(R.layout.editor_left_xm_tools_layout);
+                toolsDialogBuilder.setView(R.layout.editor_left_xm_operation_layout);
                 toolsDialog = toolsDialogBuilder.create();
                 toolsDialog.getWindow().getDecorView().setBackground(new ColorDrawable(Color.parseColor("#00000000")));
                 toolsDialog.getWindow().getDecorView().setPadding(dip2px(50), dip2px(0), dip2px(50), dip2px(0));
                 toolsDialog.show();
-                toolsDialog.findViewById(R.id.editor_left_linearLayout_xm_tools_add).setOnClickListener(this::onClick);
-                toolsDialog.findViewById(R.id.editor_left_linearLayout_xm_tools_choice).setOnClickListener(this::onClick);
+                toolsDialog.findViewById(R.id.editor_left_linearLayout_xm_operation_add).setOnClickListener(this::onClick);
+                toolsDialog.findViewById(R.id.editor_left_linearLayout_xm_operation_choice).setOnClickListener(this::onClick);
                 break;
-            case R.id.editor_left_linearLayout_xm_tools_choice:
+            case R.id.editor_left_linearLayout_xm_operation_choice:
                 viewTree.editor_drawerLayout_topView.closeDrawers();
                 toolsDialog.dismiss();
                 break;

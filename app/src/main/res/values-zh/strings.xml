@@ -12,6 +12,7 @@
     <string name="editor_project_add">新建项目</string>
     <string name="editor_select_project">选择项目</string>
     <string name="editor_project_file">项目文件</string>
-    <string name="editor_project_tools">项目操作</string>
+    <string name="editor_project_operation">项目操作</string>
     <string name="editor_project_select_default">未打开项目</string>
+    <string name="editor_project_tools">项目工具</string>
 </resources>

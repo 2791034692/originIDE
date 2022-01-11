@@ -36,6 +36,7 @@ public class System extends AppManage {
 
     public void init(Application application) {
         //内置的插件
+        this.initApplication(application);
     }
 
     //插件导入，仅先加载需要使用的，生成的类会在AppManage中存储，避免进行再一次反射
