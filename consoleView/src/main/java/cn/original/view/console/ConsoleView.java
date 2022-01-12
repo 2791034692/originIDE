@@ -1,13 +1,13 @@
-package cn.original.ide.view.console;
+package cn.original.view.console;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.LinearLayoutCompat;
 
-public class ConsoleView extends LinearLayoutCompat {
+public class ConsoleView extends RelativeLayout {
     public ConsoleView(@NonNull Context context) {
         this(context, null);
     }
@@ -18,6 +18,11 @@ public class ConsoleView extends LinearLayoutCompat {
 
     public ConsoleView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    private void init() {
+        setBackgroundResource(R.drawable.ic_drawable_console);
     }
 
     @Override
@@ -35,6 +40,14 @@ public class ConsoleView extends LinearLayoutCompat {
 
     private final ConsoleGroup createConsoleGroup() {
         return new ConsoleGroup(this);
+    }
+
+    public void show() {
+        setVisibility(VISIBLE);
+    }
+
+    public void dismiss() {
+        setVisibility(GONE);
     }
 
 

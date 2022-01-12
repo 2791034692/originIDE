@@ -1,4 +1,4 @@
-package cn.original.ide.view.console;
+package cn.original.view.console;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
 

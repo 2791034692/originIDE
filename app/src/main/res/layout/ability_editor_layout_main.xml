@@ -112,4 +112,9 @@
             android:background="#886c6c6c" />
     </LinearLayout>
 
+    <cn.original.view.console.ConsoleView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white" />
 </RelativeLayout>
