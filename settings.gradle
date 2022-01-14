@@ -1,4 +1,4 @@
-include ':consoleView'
+include ':consoleView2'
 include ':node'
 include ':code'
 include ':oms'

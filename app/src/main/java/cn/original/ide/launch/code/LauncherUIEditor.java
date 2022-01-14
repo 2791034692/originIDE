@@ -117,6 +117,7 @@ public class LauncherUIEditor extends 视窗能力 implements View.OnClickListen
         viewTree.editor_codeEditor_view.setKeywordColor(Color.parseColor("#0033B3"));
         initSymbol();
         viewTree.editor_left_linearLayout_xm_operation.setOnClickListener(this::onClick);
+        System.out.println(1);
     }
 
     private AlertDialog.Builder toolsDialogBuilder = null;
