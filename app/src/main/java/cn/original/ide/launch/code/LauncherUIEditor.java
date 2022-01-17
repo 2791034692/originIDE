@@ -4,6 +4,7 @@ package cn.original.ide.launch.code;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.util.ArrayMap;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -12,12 +13,16 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager.widget.ViewPager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.original.ide.R;
+import cn.original.ide.launch.code.adapter.PageAdapter;
 import cn.original.ide.launch.code.file.edit.left.Adapter;
 import cn.original.ide.module.System;
+import cn.original.ide.module.ability.CMDAbility;
 import cn.original.ide.settings.Settings;
 import cn.original.ide.tree.list.listener.OnScrollToListener;
 import cn.original.ide.tree.list.node.TreeNode;
@@ -27,9 +32,11 @@ import oms.content.意图;
 import oms.io.File;
 
 
-public class LauncherUIEditor extends 视窗能力 implements View.OnClickListener {
+public class LauncherUIEditor extends 视窗能力 implements View.OnClickListener, ViewPager.OnPageChangeListener {
     private AbilityEditorLayoutTree viewTree;
     private LinearLayoutManager linearLayoutManager;
+    private ArrayMap<String, CMDAbility> cmdAbilityArrayMap;
+
 
     void initSymbol() {
         int width = dip2px(40);
@@ -104,6 +111,7 @@ public class LauncherUIEditor extends 视窗能力 implements View.OnClickListen
         viewTree.editor_codeEditor_view.setTypeface(typeface);
         viewTree.editor_imageView_redo.setOnClickListener(this::onClick);
         viewTree.editor_imageView_undo.setOnClickListener(this::onClick);
+        viewTree.editor_imageView_more.setOnClickListener(this::onClick);
         linearLayoutManager = new LinearLayoutManager(this);
         adapter = new Adapter(this);
         viewTree.recyclerView.setAdapter(adapter);
@@ -117,7 +125,20 @@ public class LauncherUIEditor extends 视窗能力 implements View.OnClickListen
         viewTree.editor_codeEditor_view.setKeywordColor(Color.parseColor("#0033B3"));
         initSymbol();
         viewTree.editor_left_linearLayout_xm_operation.setOnClickListener(this::onClick);
-        System.out.println(1);
+        ArrayList<View> views = new ArrayList<>();
+        PageAdapter adapter = new PageAdapter(views);
+        views.add(InflaterView(R.layout.editor_right_tools_layout, null));
+        views.add(InflaterView(R.layout.editor_right_console_layout, null));
+        viewTree.editor_right_viewPage_top.setAdapter(adapter);
+        cmdAbilityArrayMap = System.with(this).getCmdAbilityArrayMap();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            System.out.println(1);
+        }
     }
 
     private AlertDialog.Builder toolsDialogBuilder = null;
@@ -156,6 +177,9 @@ public class LauncherUIEditor extends 视窗能力 implements View.OnClickListen
                 viewTree.editor_drawerLayout_topView.closeDrawers();
                 toolsDialog.dismiss();
                 break;
+            case R.id.editor_imageView_more:
+                viewTree.editor_drawerLayout_topView.openDrawer(Gravity.RIGHT);
+                break;
         }
     }
 
@@ -166,19 +190,67 @@ public class LauncherUIEditor extends 视窗能力 implements View.OnClickListen
                 viewTree.editor_drawerLayout_topView.closeDrawers();
                 return true;
             }
+            /*if(viewTree.editor_consoleView_bind.isShow()){
+                viewTree.editor_consoleView_bind.dismiss();
+                return true;
+            }*/
         }
         return super.onKeyDown(keyCode, event);
     }
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         System.with(this).logout();
+        viewTree.editor_consoleView_bind.recycle();
     }
+
 
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
         System.with(this).logout();
+        viewTree.editor_consoleView_bind.recycle();
+    }
+
+    /**
+     * This method will be invoked when the current page is scrolled, either as part
+     * of a programmatically initiated smooth scroll or a user initiated touch scroll.
+     *
+     * @param position             Position index of the first page currently being displayed.
+     *                             Page position+1 will be visible if positionOffset is nonzero.
+     * @param positionOffset       Value from [0, 1) indicating the offset from the page at position.
+     * @param positionOffsetPixels Value in pixels indicating the offset from position.
+     */
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    /**
+     * This method will be invoked when a new page becomes selected. Animation is not
+     * necessarily complete.
+     *
+     * @param position Position index of the new selected page.
+     */
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    /**
+     * Called when the scroll state changes. Useful for discovering when the user
+     * begins dragging, when the pager is automatically settling to the current page,
+     * or when it is fully stopped/idle.
+     *
+     * @param state The new scroll state.
+     * @see ViewPager#SCROLL_STATE_IDLE
+     * @see ViewPager#SCROLL_STATE_DRAGGING
+     * @see ViewPager#SCROLL_STATE_SETTLING
+     */
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }

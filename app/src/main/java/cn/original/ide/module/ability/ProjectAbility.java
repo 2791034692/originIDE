@@ -16,6 +16,7 @@ public class ProjectAbility extends Ability implements ProjectAbilityParent {
         super(application);
     }
 
+
     public void setParent(ProjectAbilityParent ability) {
         this.projectAbilityParent = ability;
     }

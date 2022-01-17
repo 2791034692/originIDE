@@ -5,24 +5,48 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.ArrayMap;
 
 import androidx.annotation.NonNull;
 
+import cn.original.ide.module.ability.CMDAbility;
 import cn.original.ide.module.ability.CompilerAbility;
 import cn.original.ide.module.ability.ProjectAbility;
+import cn.original.ide.module.ability.SettingAbility;
+import cn.original.ide.module.ability.ToolAbility;
 import dalvik.system.DexClassLoader;
 
 public abstract class AppManage {
     private Context context;
     Handler handler;
-    public AppManage() {
+    String ID;
+    private ArrayMap<String, ProjectAbility> projectAbilitiesIndex = new ArrayMap<>();
+    private ArrayMap<String, CompilerAbility> compilerAbilitiesIndex = new ArrayMap<>();
+    private ArrayMap<String, ToolAbility> toolAbilitiesIndex = new ArrayMap<>();
+    private ArrayMap<String, SettingAbility> settingAbilitiesIndex = new ArrayMap<>();
+    private ArrayMap<String, CMDAbility> cmdAbilityArrayMap = new ArrayMap<>();
+
+    public AppManage(String string) {
         this.handler = new Handler();
+        this.ID = string;
     }
 
+    public ArrayMap<String, CMDAbility> getCmdAbilityArrayMap() {
+        return cmdAbilityArrayMap;
+    }
 
     public Context getContext() {
         return this.context.getApplicationContext();
     }
+
+    public ArrayMap<String, CompilerAbility> getCompilerAbilitiesIndex() {
+        return compilerAbilitiesIndex;
+    }
+
+    public ArrayMap<String, ProjectAbility> getProjectAbilitiesIndex() {
+        return projectAbilitiesIndex;
+    }
+
 
     protected void setContext(Context context) {
         if (context instanceof Activity) {
@@ -31,11 +55,19 @@ public abstract class AppManage {
     }
 
     public CompilerAbility getCompilerAbility(String string) {
-        return null;
+        return compilerAbilitiesIndex.get(string);
     }
 
     public ProjectAbility getProjectAbility(String string) {
-        return null;
+        return projectAbilitiesIndex.get(string);
+    }
+
+    public ToolAbility getToolAbility(String string) {
+        return toolAbilitiesIndex.get(string);
+    }
+
+    public SettingAbility getSettingAbility(String string) {
+        return settingAbilitiesIndex.get(string);
     }
 
     public Context getCurrentContext() {
@@ -44,6 +76,7 @@ public abstract class AppManage {
 
     public Application initApplication(Application application) {
         application.setManage(this);
+        application.setID(ID);
         return application;
     }
 

@@ -6,8 +6,6 @@ import com.myopicmobile.textwarrior.base.BasePanel;
 
 public class LanguageJava extends BaseLanguage {
 
-    private static LanguageJava mLanguage = null;
-    private static LexerJava mLexer = null;
     private final static String[] keywords = {
             "void", "boolean", "byte", "char", "short", "int", "long", "float", "double", "strictfp",
             "import", "package", "new", "class", "interface", "extends", "implements", "enum",
@@ -17,25 +15,30 @@ public class LanguageJava extends BaseLanguage {
             "continue", "break", "return", "synchronized", "transient",
             "true", "false", "null"
     };
-
     private final static String[] basicNames = {
             "String", "CharSequence", "Integer", "Float", "Long", "Byte", "Character",
             "Double"
     };
-
     private final static String[] exNames = {
             "S5dActivity", "getContext()", "取实例()"
     };
-
     private final static char[] BASIC_Java_OPERATORS = {
             '(', ')', '{', '}', '.', ',', ';', '=', '+', '-',
             '/', '*', '&', '!', '|', ':', '[', ']', '<', '>',
             '?', '~', '%', '^'
     };
+    private static com.myopicmobile.textwarrior.language.java.LanguageJava mLanguage = null;
+    private static LexerJava mLexer = null;
 
-    public static LanguageJava getInstance() {
+    private LanguageJava() {
+        setOperators(BASIC_Java_OPERATORS);
+        setKeywords(keywords);
+        setNames(basicNames);//先setName才能addName
+    }
+
+    public static com.myopicmobile.textwarrior.language.java.LanguageJava getInstance() {
         if (mLanguage == null) {
-            mLanguage = new LanguageJava();
+            mLanguage = new com.myopicmobile.textwarrior.language.java.LanguageJava();
         }
         if (mLexer == null) {
             mLexer = new LexerJava();
@@ -54,11 +57,5 @@ public class LanguageJava extends BaseLanguage {
     public void setCodePanel(BasePanel mCodePanel) {
         super.setCodePanel(mCodePanel);
         mCodePanel.setLanguage(getInstance());
-    }
-
-    private LanguageJava() {
-        setOperators(BASIC_Java_OPERATORS);
-        setKeywords(keywords);
-        setNames(basicNames);//先setName才能addName
     }
 }

@@ -1,17 +1,19 @@
-package cn.original.view.console.print;
+package cn.original.view.console.stream;
 
 import android.os.Handler;
+import android.os.Looper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 
 import cn.original.view.console.interfaces.ConsoleInterface;
 
 public class PrintStream extends java.io.PrintStream {
     private Handler handler;
-
+    private ConsoleInterface consoleInterface;
     /**
      * Creates a new print stream, without automatic line flushing, with the
      * specified file name.  This convenience constructor creates
@@ -33,59 +35,123 @@ public class PrintStream extends java.io.PrintStream {
      *                               access to the file
      * @since 1.5
      */
-    public PrintStream(ConsoleInterface consoleInterface, File fileName) throws FileNotFoundException {
+    public PrintStream(final ConsoleInterface consoleInterface, File fileName) throws FileNotFoundException {
         super(fileName);
-        this.handler = new Handler();
+        this.handler = new Handler(Looper.getMainLooper());
+        this.consoleInterface = consoleInterface;
+    }
+
+
+    private void print2(final Object object) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                consoleInterface.print(object.toString() + "\n");
+                System.gc();
+            }
+        });
     }
 
     @Override
     public void close() {
+        handler = null;
         super.close();
     }
 
     @Override
     public void print(Object obj) {
         //super.print(obj);
+        this.print2(obj);
     }
 
     @Override
     public void print(char[] s) {
-        super.print(s);
+        this.print2(Arrays.toString(s));
     }
 
     @Override
     public void print(double d) {
-        super.print(d);
+        this.print2(d);
     }
 
     @Override
     public void print(float f) {
-        super.print(f);
+        this.print2(f);
     }
 
     @Override
     public void print(int i) {
-        super.print(i);
+        this.print2(i);
     }
 
     @Override
     public void print(boolean b) {
-        super.print(b);
+        this.print2(b);
     }
 
     @Override
     public void print(long l) {
-        super.print(l);
+        this.print2(l);
     }
 
     @Override
     public void print(char c) {
-        super.print(c);
+        this.print2(c);
+    }
+
+    @Override
+    public void println(boolean x) {
+        this.print(x);
+    }
+
+    @Override
+    public void println(double x) {
+        this.print(x);
+    }
+
+    @Override
+    public void println(Object x) {
+        this.print(x);
+    }
+
+    @Override
+    public void println() {
+        this.print("");
+    }
+
+    @Override
+    public void println(char[] x) {
+        this.print(x);
+    }
+
+    @Override
+    public void println(float x) {
+        this.print(x);
+    }
+
+    @Override
+    public void println(long x) {
+        this.print(x);
+    }
+
+    @Override
+    public void println(char x) {
+        this.print(x);
+    }
+
+    @Override
+    public void println(String x) {
+        this.print(x);
+    }
+
+    @Override
+    public void println(int x) {
+        this.print(x);
     }
 
     @Override
     public void print(String s) {
-        //super.print(s);
+        this.print2(s);
     }
 
 

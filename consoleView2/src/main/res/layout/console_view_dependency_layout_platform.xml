@@ -3,11 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <EditText
         android:id="@+id/console_view_dependency_layout_platform_editText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@null"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="top"
+        android:paddingLeft="15dp"
+        android:paddingTop="20dp"
+        android:textSize="14sp"
         android:textCursorDrawable="@null" />
 </LinearLayout>

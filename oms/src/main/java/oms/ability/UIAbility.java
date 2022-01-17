@@ -4,8 +4,10 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import oms.content.Handler;
 import oms.content.Intent;
 import oms.content.Message;
@@ -30,8 +32,11 @@ public class UIAbility extends AppCompatActivity {
 
     }
 
-    public View InflaterView(int t, ViewGroup group){
-        return getLayoutInflater().inflate(t,group,false);
+    public View InflaterView(int t, ViewGroup group) {
+        if (group == null) {
+            return getLayoutInflater().inflate(t, null);
+        }
+        return getLayoutInflater().inflate(t, group, false);
     }
 
     public void startService(Class<ServiceAbility> serviceAbility){

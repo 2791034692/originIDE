@@ -7,38 +7,38 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.widget.LinearLayoutCompat;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintStream;
 
-import cn.original.consoleview2.R;
+import cn.original.view.R;
 import cn.original.view.console.interfaces.ConsoleInterface;
 
-public class ConsoleView extends RelativeLayout implements ConsoleInterface {
+public class ConsoleView extends LinearLayoutCompat implements ConsoleInterface {
     private final float[] cornerRadii;
     private PrintStream outPrintStream;
     private PrintStream errPrintStream;
     private PrintStream printStream;
     private EditText editText;
 
-    public ConsoleView(@NonNull Context context) {
+    public ConsoleView(Context context) {
         this(context, null);
     }
 
-    public ConsoleView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public ConsoleView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ConsoleView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ConsoleView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         cornerRadii = new float[]{dip2px(20), dip2px(20), 0, 0};
         this.outPrintStream = System.out;
         this.errPrintStream = System.err;
+
         init();
     }
 
@@ -57,7 +57,12 @@ public class ConsoleView extends RelativeLayout implements ConsoleInterface {
     @Override
     public void print(CharSequence message) {
         this.show();
-        this.editText.setText(this.editText.getText() + "/n" + message);
+        this.editText.setText(this.editText.getText() + message.toString());
+    }
+
+    @Override
+    public String input() {
+        return null;
     }
 
     public void load() {
@@ -84,7 +89,7 @@ public class ConsoleView extends RelativeLayout implements ConsoleInterface {
     @Override
     @Deprecated
     public void setBackground(Drawable background) {
-        return;
+        super.setBackground(background);
     }
 
     @Override
@@ -100,22 +105,30 @@ public class ConsoleView extends RelativeLayout implements ConsoleInterface {
     }
 
     private void init() {
-        dismiss();
         super.setBackgroundResource(R.drawable.ic_drawable_console);
         this.addView(R.layout.console_view_dependency_layout_platform);
+        String string = getContext().getFilesDir() + "/print/out3.txt";
+        File file = new File(string);
         try {
-            this.printStream = new cn.original.view.console.print.PrintStream(new File(getContext().getFilesDir() + "/print/out.db"));
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            }
+            this.printStream = new cn.original.view.console.stream.PrintStream(this, file);
+            this.editText = findViewById(R.id.console_view_dependency_layout_platform_editText);
+            load();
+            //System.out.println(2);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        this.editText = findViewById(R.id.console_view_dependency_layout_platform_editText);
     }
 
 
     private void addView(int layout) {
         final LayoutInflater inflater = LayoutInflater.from(getContext());
-        View view = inflater.inflate(R.layout.console_view_dependency_layout_platform, this, false);
-        this.addView(view);
+        inflater.inflate(R.layout.console_view_dependency_layout_platform, this);
     }
 
     @Override
@@ -127,13 +140,6 @@ public class ConsoleView extends RelativeLayout implements ConsoleInterface {
         return getVisibility() == GONE;
     }
 
-    private final ConsoleEditor createConsoleEditor() {
-        return new ConsoleEditor(this);
-    }
-
-    private final ConsoleGroup createConsoleGroup() {
-        return new ConsoleGroup(this);
-    }
 
     public void show() {
         setVisibility(VISIBLE);

@@ -9,9 +9,18 @@ public abstract class Application {
     private boolean state = false;
     public static final boolean SUCCESS = true;
     public static final boolean ERROR = false;
+    private String ID;
+
+    public final String getOriginalID() {
+        return ID;
+    }
 
     public AppManage getApplicationManage() {
         return system;
+    }
+
+    void setID(String ID) {
+        this.ID = ID;
     }
 
     public void initAbility(Ability ability) {

@@ -1,8 +1,7 @@
 package cn.original.ide.module.ability;
 
-import android.os.Message;
 import android.widget.Toast;
-import cn.original.ide.module.content.AppManage;
+
 import cn.original.ide.module.content.Application;
 import cn.original.ide.module.interfaces.AbilityParent;
 
@@ -19,6 +18,7 @@ public abstract class Ability implements AbilityParent {
             Toast.makeText(application.getApplicationManage().getContext(), object.toString(), Toast.LENGTH_SHORT).show();
         });
     }
+
 
     public Application getApplication() {
         return application;

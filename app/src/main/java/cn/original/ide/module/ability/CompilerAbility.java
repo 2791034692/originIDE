@@ -1,9 +1,5 @@
 package cn.original.ide.module.ability;
 
-import android.view.Gravity;
-
-import androidx.recyclerview.widget.RecyclerView;
-
 import cn.original.ide.module.content.Application;
 import cn.original.ide.module.interfaces.CompilerAbilityParent;
 
