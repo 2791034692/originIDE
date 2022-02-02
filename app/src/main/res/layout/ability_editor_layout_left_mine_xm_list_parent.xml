@@ -4,6 +4,7 @@
     android:gravity="center_vertical"
     android:id="@+id/editor_linearLayout_left_mine_xm_list_parent"
     android:background="@color/white"
+    android:paddingRight="10dp"
     android:layout_width="match_parent"
     android:layout_height="40dp">
 
@@ -21,13 +22,21 @@
         android:layout_height="24dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:textColor="@color/black"
+        android:gravity="center_vertical"
         android:id="@+id/editor_textView_left_mine_xm_list_parent_title"
         android:layout_marginLeft="10dp"
         android:textSize="14sp"
         android:singleLine="true"
-        android:ellipsize="middle"
         android:text="目录名" />
+
+    <ImageView
+        android:id="@+id/editor_textView_left_mine_xm_list_parent_add"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:padding="5dp"
+        android:src="@drawable/ic_drawable_add_24dp" />
 </LinearLayout>

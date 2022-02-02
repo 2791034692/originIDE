@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_drawable_dialog"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ic_drawable_dialog_project_add_app_edit"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15sp">
+
+            <EditText
+                android:id="@+id/dialog_project_add_application_editText1"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:hint="@string/dialog_project_add_app_hint1"
+                android:singleLine="true"
+                android:textCursorDrawable="@drawable/ic_drawable_cursor"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ic_drawable_dialog_project_add_app_edit"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15sp">
+
+            <EditText
+                android:id="@+id/dialog_project_add_application_editText2"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:hint="@string/dialog_project_add_app_hint2"
+                android:singleLine="true"
+                android:textCursorDrawable="@drawable/ic_drawable_cursor"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/dialog_project_add_application_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/ic_drawable_dialog_project_add_app_button"
+            android:text="@string/dialog_project_add_application"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</LinearLayout>

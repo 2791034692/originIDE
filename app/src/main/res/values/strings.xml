@@ -14,4 +14,10 @@
     <string name="editor_project_operation">项目操作</string>
     <string name="editor_project_select_default">未打开项目</string>
     <string name="editor_project_tools">项目工具</string>
+    <string name="editor_right_tools">工具栏</string>
+    <string name="editor_right_console">控制台</string>
+    <string name="editor_console_introduce">原子灵动 命令操作台 2022年制作</string>
+    <string name="dialog_project_add_application">创建项目</string>
+    <string name="dialog_project_add_app_hint1">项目名称</string>
+    <string name="dialog_project_add_app_hint2">项目包名</string>
 </resources>

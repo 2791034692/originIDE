@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">原子靈動</string>
+    <string name="editor_copy">複製</string>
+    <string name="editor_paste">粘貼</string>
+    <string name="editor_shear">剪貼</string>
+    <string name="editor_project_add">新建項目</string>
+    <string name="editor_select_project">選擇項目</string>
+    <string name="editor_project_file">項目檔案</string>
+    <string name="editor_project_operation">項目操作</string>
+    <string name="editor_project_select_default">未打開項目</string>
+    <string name="editor_project_tools">項目工具</string>
+    <string name="editor_right_tools">工具列</string>
+    <string name="editor_right_console">控制台</string>
+    <string name="editor_console_introduce">原子靈動 命令操作臺 2022年製作</string>
+    <string name="dialog_project_add_application">創建項目</string>
+    <string name="dialog_project_add_app_hint1">項目名稱</string>
+    <string name="dialog_project_add_app_hint2">項目包名</string>
+</resources>

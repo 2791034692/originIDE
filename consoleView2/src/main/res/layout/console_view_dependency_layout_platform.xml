@@ -3,6 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="1dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp">
+
+        <Button
+            android:id="@+id/console_view_dependency_layout_platform_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:text="全部"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/console_view_dependency_layout_platform_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:text="正常"
+            android:textColor="@color/正常" />
+
+        <Button
+            android:id="@+id/console_view_dependency_layout_platform_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:text="错误"
+            android:textColor="@color/错误" />
+    </LinearLayout>
+
     <EditText
         android:id="@+id/console_view_dependency_layout_platform_editText"
         android:layout_width="match_parent"

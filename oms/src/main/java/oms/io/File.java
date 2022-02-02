@@ -1,9 +1,8 @@
 package oms.io;
+
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
@@ -16,20 +15,24 @@ import oms.ability.ModAbility;
 
 public class File extends ModAbility {
      private java.io.File _File;
-     private String _path,_realPath = null;
+     private String _path, _realPath = null;
      public static final String UTF8 = "UTF-8";
      public static final String GBK = "GBK";
      public static final String UTF32 = "UTF-32";
      public static final String UTF16 = "UTF-16";
 
-     public boolean mkdirs(){
+     public java.io.File getFile() {
+          return _File;
+     }
+
+     public boolean mkdirs() {
           return this._File.mkdirs();
      }
 
-     public File(String string){
+     public File(String string) {
           this._path = string;
-          this._realPath = getPath(_path,getContext());
-          if(!_path.startsWith("@")){
+          this._realPath = getPath(_path, getContext());
+          if (!_path.startsWith("@")) {
                this._File = new java.io.File(this._realPath);
           }
      }
@@ -49,7 +52,6 @@ public class File extends ModAbility {
           }
           write(sequence,"-");
      }
-
 
 
      public boolean move(String o){

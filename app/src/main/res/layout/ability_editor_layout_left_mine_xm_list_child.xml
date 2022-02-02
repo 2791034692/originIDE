@@ -22,6 +22,5 @@
         android:layout_marginLeft="10dp"
         android:textSize="14sp"
         android:singleLine="true"
-        android:ellipsize="middle"
         android:text="目录名" />
 </LinearLayout>

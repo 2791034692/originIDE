@@ -11,10 +11,21 @@ public class Adapter extends TreeListAdapter {
 
 
     private Activity activity;
-
+    private Handler handler;
     public Adapter(Activity context) {
         super(context);
         this.activity = context;
+        this.handler = new Handler() {
+            @Override
+            public void acceptMessage(Message message) {
+                super.acceptMessage(message);
+                switch (message.getMessage()) {
+                    case 1:
+                        message.getHolder().isShow();
+                        break;
+                }
+            }
+        };
     }
 
     @Override
@@ -30,7 +41,7 @@ public class Adapter extends TreeListAdapter {
 
     @Override
     public ParentViewHolder onCreateParentViewHolder(View view) {
-        ParentViewHolder parentViewHolder = new ParentViewHolder(view);
+        ParentViewHolder parentViewHolder = new ParentViewHolder(view, this.handler);
         parentViewHolder.setActivity(this.activity);
         return parentViewHolder;
     }

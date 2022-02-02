@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Filter;
 import android.widget.TextView;
 
+import com.myopicmobile.textwarrior.R;
 import com.myopicmobile.textwarrior.android.FreeScrollingTextField;
 import com.myopicmobile.textwarrior.base.BaseLanguage;
 import com.myopicmobile.textwarrior.base.BasePanel;
@@ -17,7 +18,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import cn.original.ide.launch.code.R;
 
 public class JavaAutoCompletePanel extends BasePanel {
 

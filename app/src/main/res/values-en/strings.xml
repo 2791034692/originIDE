@@ -14,4 +14,10 @@
     <string name="editor_project_operation">project operation</string>
     <string name="editor_project_select_default">project not open</string>
     <string name="editor_project_tools">project tools</string>
+    <string name="editor_right_tools">toolbar</string>
+    <string name="editor_right_console">console</string>
+    <string name="editor_console_introduce">originIDE command console made in 2022</string>
+    <string name="dialog_project_add_application">create project</string>
+    <string name="dialog_project_add_app_hint1">project name</string>
+    <string name="dialog_project_add_app_hint2">project package</string>
 </resources>

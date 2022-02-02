@@ -44,4 +44,4 @@
 -dontnote com.google.android.material.**
 -dontwarn androidx.**
 -keep class com.myopicmobile.textwarrior.** {*;}
--keep class cn.original.node.** {*;}
+-keep class cn.original.ide.module.** {*;}

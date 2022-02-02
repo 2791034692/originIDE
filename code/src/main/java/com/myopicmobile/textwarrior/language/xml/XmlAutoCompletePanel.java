@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Filter;
 import android.widget.TextView;
 
+import com.myopicmobile.textwarrior.R;
 import com.myopicmobile.textwarrior.android.FreeScrollingTextField;
 import com.myopicmobile.textwarrior.base.BasePanel;
 import com.myopicmobile.textwarrior.bean.ListItem;
@@ -13,7 +14,6 @@ import com.myopicmobile.textwarrior.bean.ListItem;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import cn.original.ide.launch.code.R;
 
 public class XmlAutoCompletePanel extends BasePanel {
 

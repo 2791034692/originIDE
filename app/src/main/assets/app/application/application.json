@@ -1,0 +1,6 @@
+{
+  "name": "{name}",
+  "package": "{package}",
+  "applicationType": "{applicationType}",
+  "iconPath": "{iconPath}"
+}

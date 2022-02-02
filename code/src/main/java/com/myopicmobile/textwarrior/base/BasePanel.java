@@ -22,6 +22,7 @@ import android.widget.Filterable;
 import android.widget.ListPopupWindow;
 import android.widget.TextView;
 
+import com.myopicmobile.textwarrior.R;
 import com.myopicmobile.textwarrior.android.FreeScrollingTextField;
 import com.myopicmobile.textwarrior.bean.ListItem;
 import com.myopicmobile.textwarrior.common.Flag;
@@ -30,8 +31,6 @@ import com.myopicmobile.textwarrior.common.PinyinTool;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.original.ide.launch.code.R;
 
 @SuppressLint("NewApi")
 public class BasePanel extends ListPopupWindow {

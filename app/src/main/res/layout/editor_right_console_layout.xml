@@ -5,22 +5,22 @@
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingTop="10dp">
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="控制台"
+        android:text="@string/editor_right_console"
         android:textColor="@color/black"
         android:textSize="16sp" />
 
-    <EditText
+    <cn.original.ide.launch.code.cmd.CMDEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         android:gravity="top|left"
-        android:lineHeight=""
         android:paddingTop="15dp"
+        android:inputType="textMultiLine"
+        android:textCursorDrawable="@drawable/ic_drawable_cursor"
         android:textColor="@color/black"
-        android:textCursorDrawable="@null" />
+        android:textSize="15sp" />
 </LinearLayout>

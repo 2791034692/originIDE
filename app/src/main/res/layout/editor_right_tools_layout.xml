@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="工具栏"
+        android:text="@string/editor_right_tools"
         android:textColor="@color/black"
         android:textSize="16sp" />
 </LinearLayout>

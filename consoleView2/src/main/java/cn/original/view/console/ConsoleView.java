@@ -6,9 +6,9 @@ import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-
-import androidx.appcompat.widget.LinearLayoutCompat;
+import android.widget.LinearLayout;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,13 +17,18 @@ import java.io.PrintStream;
 
 import cn.original.view.R;
 import cn.original.view.console.interfaces.ConsoleInterface;
+import cn.original.view.console.stream.ErrorPrintStream;
+import cn.original.view.console.stream.NormalPrintStream;
 
-public class ConsoleView extends LinearLayoutCompat implements ConsoleInterface {
+public class ConsoleView extends LinearLayout implements ConsoleInterface, View.OnClickListener {
     private final float[] cornerRadii;
-    private PrintStream outPrintStream;
-    private PrintStream errPrintStream;
-    private PrintStream printStream;
+    private PrintStream outOldPrintStream;
+    private PrintStream errOldPrintStream;
+    private NormalPrintStream outNewPrintStream;
+    private ErrorPrintStream errNewPrintStream;
+    private int state = 0;
     private EditText editText;
+    private Button button1, button2, button3;
 
     public ConsoleView(Context context) {
         this(context, null);
@@ -33,31 +38,24 @@ public class ConsoleView extends LinearLayoutCompat implements ConsoleInterface 
         this(context, attrs, 0);
     }
 
-    public ConsoleView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        cornerRadii = new float[]{dip2px(20), dip2px(20), 0, 0};
-        this.outPrintStream = System.out;
-        this.errPrintStream = System.err;
-
-        init();
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        outPrintStream = null;
-        errPrintStream = null;
-        clear();
-    }
+    private CharSequence all = "";
+    private CharSequence normal = "";
 
     public void clear() {
 
     }
 
-    @Override
-    public void print(CharSequence message) {
-        this.show();
-        this.editText.setText(this.editText.getText() + message.toString());
+    private CharSequence error = "";
+    private int 白色 = 0xffffffff;
+    private int 黑色 = 0xff000000;
+
+
+    public ConsoleView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        cornerRadii = new float[]{dip2px(20), dip2px(20), 0, 0};
+        this.outOldPrintStream = System.out;
+        this.errOldPrintStream = System.err;
+        init();
     }
 
     @Override
@@ -65,15 +63,92 @@ public class ConsoleView extends LinearLayoutCompat implements ConsoleInterface 
         return null;
     }
 
-    public void load() {
-        System.setErr(this.printStream);
-        System.setOut(this.printStream);
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        outOldPrintStream = null;
+        errOldPrintStream = null;
+        clear();
     }
 
-    public void end() {
-        System.setOut(outPrintStream);
-        System.setErr(errPrintStream);
-        dismiss();
+    @Override
+    public void print(cn.original.view.console.stream.PrintStream printStream, CharSequence c) {
+        String string = (String) c;
+        if (printStream instanceof NormalPrintStream) {
+            if (state == 0 || state == 1) {
+                String[] all = ((String) this.all).split("\n");
+                String[] normal = ((String) this.normal).split("\n");
+                if (all.length < 100 && normal.length < 50) {
+                    this.all = this.all + string;
+                    this.normal = this.normal + string;
+                } else if (all.length < 100 && normal.length > 50) {
+                    this.all = this.all + string;
+                    this.normal = string;
+                } else if (all.length > 100 && normal.length < 50) {
+                    this.all = string;
+                    this.normal = this.normal + string;
+                } else if (all.length > 100 && normal.length > 50) {
+                    this.all = string;
+                    this.normal = string;
+                }
+                this.editText.setText(this.editText.getText() + string);
+            } else {
+                String[] all = ((String) this.all).split("\n");
+                String[] normal = ((String) this.normal).split("\n");
+                if (all.length < 100 && normal.length < 50) {
+                    this.all = this.all + string;
+                    this.normal = this.normal + string;
+                } else if (all.length < 100 && normal.length > 50) {
+                    this.all = this.all + string;
+                    this.normal = string;
+                } else if (all.length > 100 && normal.length < 50) {
+                    this.all = string;
+                    this.normal = this.normal + string;
+                } else if (all.length > 100 && normal.length > 50) {
+                    this.all = string;
+                    this.normal = string;
+                }
+                return;
+            }
+        } else if (printStream instanceof ErrorPrintStream) {
+            String[] all = ((String) this.all).split("\n");
+            String[] error = ((String) this.error).split("\n");
+            if (state == 0 || state == 2) {
+                if (all.length < 100 && error.length < 50) {
+                    this.all = this.all + string;
+                    this.error = this.error + string;
+                } else if (all.length < 100 && error.length > 50) {
+                    this.all = this.all + string;
+                    this.error = string;
+                } else if (all.length > 100 && error.length < 50) {
+                    this.all = string;
+                    this.error = this.error + string;
+                } else if (all.length > 100 && error.length > 50) {
+                    this.all = string;
+                    this.error = string;
+                }
+                this.editText.setText(this.editText.getText() + string);
+            } else {
+                if (all.length < 100 && error.length < 80) {
+                    this.all = this.all + string;
+                    this.error = this.error + string;
+                } else if (all.length < 100 && error.length > 80) {
+                    this.all = this.all + string;
+                    this.error = string;
+                } else if (all.length > 100 && error.length < 80) {
+                    this.all = string;
+                    this.error = this.error + string;
+                } else if (all.length > 100 && error.length > 80) {
+                    this.all = string;
+                    this.error = string;
+                }
+                return;
+            }
+        } else {
+            return;
+        }
+        show();
+        System.gc();
     }
 
     @Override
@@ -104,25 +179,9 @@ public class ConsoleView extends LinearLayoutCompat implements ConsoleInterface 
         return (int) (dpValue * scale + 0.5f);
     }
 
-    private void init() {
-        super.setBackgroundResource(R.drawable.ic_drawable_console);
-        this.addView(R.layout.console_view_dependency_layout_platform);
-        String string = getContext().getFilesDir() + "/print/out3.txt";
-        File file = new File(string);
-        try {
-            if (!file.exists()) {
-                file.getParentFile().mkdirs();
-                file.createNewFile();
-            }
-            this.printStream = new cn.original.view.console.stream.PrintStream(this, file);
-            this.editText = findViewById(R.id.console_view_dependency_layout_platform_editText);
-            load();
-            //System.out.println(2);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void load() {
+        System.setOut(this.outNewPrintStream);
+        System.setErr(this.errNewPrintStream);
     }
 
 
@@ -131,13 +190,10 @@ public class ConsoleView extends LinearLayoutCompat implements ConsoleInterface 
         inflater.inflate(R.layout.console_view_dependency_layout_platform, this);
     }
 
-    @Override
-    public void setVisibility(int visibility) {
-        super.setVisibility(visibility);
-    }
-
-    public boolean isShow() {
-        return getVisibility() == GONE;
+    public void end() {
+        System.setOut(outOldPrintStream);
+        System.setErr(errOldPrintStream);
+        dismiss();
     }
 
 
@@ -154,13 +210,75 @@ public class ConsoleView extends LinearLayoutCompat implements ConsoleInterface 
         return findViewById(t);
     }
 
-    public synchronized final void recycle() {
-        System.setOut(outPrintStream);
-        System.setErr(errPrintStream);
+    private void init() {
         dismiss();
-        clear();
-        printStream.close();
+        super.setBackgroundResource(R.drawable.ic_drawable_console);
+        this.addView(R.layout.console_view_dependency_layout_platform);
+        String string = getContext().getFilesDir() + "/print/out3.txt";
+        File file = new File(string);
+        try {
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            }
+            this.outNewPrintStream = new NormalPrintStream(this, file);
+            this.errNewPrintStream = new ErrorPrintStream(this, file);
+            this.editText = findViewById(R.id.console_view_dependency_layout_platform_editText);
+            this.editText.setHorizontallyScrolling(true);
+            this.button1 = findViewById(R.id.console_view_dependency_layout_platform_1);
+            this.button2 = findViewById(R.id.console_view_dependency_layout_platform_2);
+            this.button3 = findViewById(R.id.console_view_dependency_layout_platform_3);
+            button1.setOnClickListener(this);
+            button2.setOnClickListener(this);
+            button3.setOnClickListener(this);
+            load();
+            //System.out.println(2);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public boolean isShow() {
+        return getVisibility() == VISIBLE;
+    }
 
+    public synchronized final void recycle() {
+        System.setOut(outOldPrintStream);
+        System.setErr(errOldPrintStream);
+        dismiss();
+        clear();
+        outNewPrintStream.close();
+        errNewPrintStream.close();
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        if (id == R.id.console_view_dependency_layout_platform_1) {
+            state = 0;
+            setColor(button1, 黑色, 白色);
+            setColor(button2, 白色, getResources().getColor(R.color.正常, getContext().getTheme()));
+            setColor(button3, 白色, getResources().getColor(R.color.错误, getContext().getTheme()));
+            this.editText.setText(this.all);
+        } else if (id == R.id.console_view_dependency_layout_platform_2) {
+            state = 1;
+            setColor(button1, 白色, 黑色);
+            setColor(button2, getResources().getColor(R.color.正常, getContext().getTheme()), 白色);
+            setColor(button3, 白色, getResources().getColor(R.color.错误, getContext().getTheme()));
+            this.editText.setText(normal);
+        } else if (id == R.id.console_view_dependency_layout_platform_3) {
+            setColor(button1, 白色, 黑色);
+            setColor(button2, 白色, getResources().getColor(R.color.正常, getContext().getTheme()));
+            setColor(button3, getResources().getColor(R.color.错误, getContext().getTheme()), 白色);
+            state = 2;
+            this.editText.setText(error);
+        }
+    }
+
+    private final void setColor(Button button, int bc, int tc) {
+        button.setBackgroundColor(bc);
+        button.setTextColor(tc);
+    }
 }

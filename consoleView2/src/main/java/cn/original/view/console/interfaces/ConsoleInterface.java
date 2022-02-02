@@ -1,7 +1,9 @@
 package cn.original.view.console.interfaces;
 
+import cn.original.view.console.stream.PrintStream;
+
 public interface ConsoleInterface {
-    void print(CharSequence charSequence);
+    void print(PrintStream printStream, CharSequence charSequence);
 
     String input();
 

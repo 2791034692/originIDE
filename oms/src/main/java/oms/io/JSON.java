@@ -41,22 +41,32 @@ public class JSON {
             e.printStackTrace();
         }
     }
-    public void put(String key,String value){
+
+    public void put(String key, String value) {
         try {
-            jsonObject.putOpt(key,value);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-    public void put(String key, JSON json){
-        try {
-            jsonObject.putOpt(key,json.jsonObject);
+            jsonObject.putOpt(key, value);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    public String getString(String text){
+    public void put(String key, JSON json) {
+        try {
+            jsonObject.putOpt(key, json.jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void put(String key, JSONArray json) {
+        try {
+            jsonObject.putOpt(key, json.jsonArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getString(String text) {
         try {
             return (String) jsonObject.get(text);
         } catch (JSONException e) {

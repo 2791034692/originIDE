@@ -40,6 +40,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginRight="15dp"
+                android:id="@+id/editor_imageView_start"
                 android:src="@drawable/ic_drawable_play2_24dp" />
 
             <ImageView
@@ -110,11 +111,9 @@
             android:layout_height="0.3dp"
             android:background="#886c6c6c" />
     </LinearLayout>
-
     <cn.original.view.console.ConsoleView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="230dp"
         android:id="@+id/editor_consoleView_bind"
-        android:visibility="gone"
         android:layout_alignParentBottom="true" />
 </RelativeLayout>
